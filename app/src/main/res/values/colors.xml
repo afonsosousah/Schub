@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#999999</color>
+    <color name="background">#292929</color>
+    <color name="gradient_green">#03FBAB</color>
+    <color name="gradient_blue">#1DDCFF</color>
+    <color name="dark_gray">#323232</color>
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textDisabled">#999999</color>
+    <color name="medium_gray">#424242</color>
+    <color name="darkest_gray">#202020</color>
+</resources>

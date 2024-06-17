@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeMenu"
+        android:icon="@drawable/house"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/scheduleMenu"
+        android:icon="@drawable/calendar_week"
+        android:title="Schedule"/>
+
+    <item
+        android:id="@+id/articlesMenu"
+        android:icon="@drawable/blockquote_left"
+        android:title="Articles"/>
+
+    <item
+        android:id="@+id/sessionsMenu"
+        android:icon="@drawable/easel"
+        android:title="Sessions"/>
+
+    <item
+        android:id="@+id/mapMenu"
+        android:icon="@drawable/map"
+        android:title="Map"/>
+</menu>

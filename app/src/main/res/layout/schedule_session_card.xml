@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardBackgroundColor="@color/background"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    app:contentPadding="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="75"
+            android:background="@drawable/dark_card"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/sessionTitleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="@color/textPrimary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sessionHoursTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hours"
+                android:textColor="@color/textPrimary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sessionRoomTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room"
+                android:textColor="@color/textPrimary"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/articlesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="25"
+            android:clipToPadding="true" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

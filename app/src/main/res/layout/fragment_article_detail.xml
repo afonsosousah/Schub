@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".ArticleDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <TextView
+                android:id="@+id/authorsTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Authors"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="6dp" />
+
+            <TextView
+                android:id="@+id/dateTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/abstractTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:justificationMode="inter_word"
+                        android:scrollbars="vertical"
+                        android:text="Abstract"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/backButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/dark_button"
+                    android:paddingLeft="32dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="32dp"
+                    android:paddingBottom="12dp"
+                    android:text="Back"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/downloadPDFButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gradient"
+                    android:paddingLeft="32dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="32dp"
+                    android:paddingBottom="12dp"
+                    android:text="View PDF"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/background"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+
+            <TextView
+                android:id="@+id/questionsTitleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Questions"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/questionsRecyclerView"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <EditText
+                android:id="@+id/questionContentEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Write new question"
+                android:textColorHint="@color/textDisabled"
+                android:inputType="textMultiLine"
+                android:textColor="@color/textPrimary" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sendQuestionButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient"
+                android:paddingLeft="32dp"
+                android:paddingTop="12dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="12dp"
+                android:text="Send question"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/background"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
