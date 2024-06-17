@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".InfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/ConferenceNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="44sp"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/LocationTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/StartDateTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/EndDateTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="44sp" />
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Information fragment" />
+        android:layout_height="44sp"
+        android:text="Contacts"
+        android:textSize="24sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/ContactsTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="44sp" />
+
+    <TextView
+        android:id="@+id/TitleTransport"
+        android:layout_width="match_parent"
+        android:layout_height="44sp"
+        android:text="Transports"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/MetroTransportTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/BusTransportTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="44sp" />
+
+    <TextView
+        android:id="@+id/TitleCodeConduct"
+        android:layout_width="match_parent"
+        android:layout_height="44sp"
+        android:text="Code of Conduct"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/CodeConductTV"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+</LinearLayout>

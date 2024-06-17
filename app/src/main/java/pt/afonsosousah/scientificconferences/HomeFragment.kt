@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -145,7 +146,16 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
+        val infoButton = rootView.findViewById<AppCompatButton>(R.id.infoButton)
+        infoButton.setOnClickListener {
+            replaceFragment(InfoFragment())
+        }
+
+        return rootView
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
     }
 
     companion object {
