@@ -3,6 +3,7 @@ package pt.afonsosousah.scientificconferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -39,12 +40,7 @@ listener: OnItemClickListener) :
         }
         fun bind(article: ScheduleArticle) {
             titleTV.text = article.title
-            authorsTV.text = article.authors.toString()
+            authorsTV.text = article.authors
         }
-    }
-
-    fun setFilteredList(articleList: List<ScheduleArticle>) {
-        this.articleList = articleList
-        notifyDataSetChanged()
     }
 }

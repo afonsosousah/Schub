@@ -21,14 +21,14 @@
             android:layout_height="wrap_content"
             android:text="Title"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/articleAuthorsTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Authors"
-            android:textColor="@color/black"
+            android:textColor="@color/darkest_gray"
             android:textSize="10sp" />
     </LinearLayout>
 

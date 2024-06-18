@@ -34,6 +34,8 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class ArticleDetailFragment : Fragment() {
@@ -136,15 +138,17 @@ class ArticleDetailFragment : Fragment() {
             val url = getString(R.string.endpoint) + "/api"
             val sendQuestionJsonRequest = JSONObject()
             val sharedPref = rootView.context.getSharedPreferences("User", Context.MODE_PRIVATE)
+            val questionContentEditText = rootView.findViewById<EditText>(R.id.questionContentEditText)
             sendQuestionJsonRequest.put("action", "sendQuestion")
             sendQuestionJsonRequest.put("user_id", sharedPref.getInt("user_id", 0))
             sendQuestionJsonRequest.put("article_id", id)
-            sendQuestionJsonRequest.put("content", rootView.findViewById<EditText>(R.id.questionContentEditText).text)
+            sendQuestionJsonRequest.put("content", questionContentEditText.text)
             val sendQuestionJsonObjectRequest = JsonObjectRequest(
                 Request.Method.POST, url,
                 sendQuestionJsonRequest,
                 { response ->
                     Toast.makeText(activity?.applicationContext, response.getString("message"), Toast.LENGTH_LONG).show()
+                    questionContentEditText.text = null;
                 },
                 { error ->
                     Toast.makeText(activity?.applicationContext, error.toString(), Toast.LENGTH_LONG).show()
@@ -161,19 +165,21 @@ class ArticleDetailFragment : Fragment() {
         val queue = Volley.newRequestQueue(activity?.applicationContext)
         val url = getString(R.string.endpoint) + "/api"
         val questionsJsonRequest = JSONObject()
-        questionsJsonRequest.put("action", "getEntries")
-        questionsJsonRequest.put("table", "article_questions")
+        questionsJsonRequest.put("action", "getQuestions")
+        questionsJsonRequest.put("article_id", id)
+        val questionTitleTV = rootView.findViewById<TextView>(R.id.questionsTitleTV)
         val questionsJsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url,
             questionsJsonRequest,
             { response ->
 
-                val message = response.getString("message")
-
-                Toast.makeText(activity?.applicationContext, message, Toast.LENGTH_SHORT).show()
+                val message = response.optString("message")
 
                 if (message.isNullOrBlank()) {
                     val questionArrayJSON = response.getJSONArray("response")
+
+                    if (questionArrayJSON.length() == 0) questionTitleTV.text = "No questions yet"
+
                     for (i in 0 until questionArrayJSON.length()) {
                         val questionJSON = questionArrayJSON.getJSONObject(i)
 
@@ -182,10 +188,14 @@ class ArticleDetailFragment : Fragment() {
                         val username = questionJSON.getString("username")
                         val article_id = questionJSON.getInt("article_id")
                         val content = questionJSON.getString("content")
-                        questionList.add(Question(id, user_id, username, article_id, content))
+                        val datetimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                        val datetime = LocalDateTime.parse(questionJSON.getString("datetime"), datetimeFormatter)
+                        questionList.add(Question(id, user_id, username, article_id, content, datetime))
                     }
                 } else {
-                    questionList.add(Question(0, 0, "", 0, "No questions yet"))
+                    Toast.makeText(activity?.applicationContext, message, Toast.LENGTH_SHORT).show()
+                    //questionList.add(Question(0, 0, "", 0, "Error while"))
+                    questionTitleTV.text = "Error fetching questions"
                 }
 
                 // Get recycler view, create adapter and populate it

@@ -3,10 +3,12 @@ package pt.afonsosousah.scientificconferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 
 class ScheduleDayListAdapter(private var dayList: List<ScheduleDay>, private val
 listener: OnItemClickListener) :
@@ -39,7 +41,7 @@ listener: OnItemClickListener) :
             }
         }
         fun bind(day: ScheduleDay) {
-            dayTV.text = day.day
+            dayTV.text = day.dayString
 
             val sessionsRecyclerView = itemView.findViewById<RecyclerView>(R.id.sessionsRecyclerView)
             sessionsRecyclerView?.layoutManager = LinearLayoutManager(itemView.context)
@@ -51,10 +53,5 @@ listener: OnItemClickListener) :
             })
             sessionsRecyclerView?.adapter = sessionsAdapter
         }
-    }
-
-    fun setFilteredList(dayList: List<ScheduleDay>) {
-        this.dayList = dayList
-        notifyDataSetChanged()
     }
 }

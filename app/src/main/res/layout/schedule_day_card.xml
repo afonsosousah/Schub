@@ -26,7 +26,8 @@
             android:padding="6dp"
             android:text="Day"
             android:textColor="@color/textPrimary"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="8dp"

@@ -4,6 +4,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -60,10 +61,5 @@ listener: OnItemClickListener) :
             })
             articlesRecyclerView?.adapter = articlesAdapter
         }
-    }
-
-    fun setFilteredList(sessionList: List<ScheduleSession>) {
-        this.sessionList = sessionList
-        notifyDataSetChanged()
     }
 }

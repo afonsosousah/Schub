@@ -82,7 +82,7 @@ class HomeFragment : Fragment() {
                     nextSessionTitleTV?.text = nextSession?.title
                     nextSessionRoomTV?.text = nextSession?.room_name
                     val duration = Duration.between(LocalDateTime.now(), nextSession?.datetime_start)
-                    nextSessionInTV?.text = "Next session in ${duration.toDaysPart().toString()}d${duration.toHoursPart().toString()}h${duration.toMinutesPart()}m"
+                    nextSessionInTV?.text = "Next session in ${duration.toDaysPart().toString()} days ${duration.toHoursPart().toString()} hours ${duration.toMinutesPart()} minutes:"
                 } else {
                     nextSessionCardView?.visibility = View.GONE
                     nextSessionInTV?.text = "There are no sessions in the near future"

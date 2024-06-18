@@ -38,7 +38,7 @@ class Register : AppCompatActivity() {
 
             // Instantiate the RequestQueue.
             val queue = Volley.newRequestQueue(this)
-            val url = "http://10.0.2.2/schub/api/auth.php"
+            val url = resources.getString(R.string.endpoint) + "/api"
 
             val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url,
                 jsonRequest,

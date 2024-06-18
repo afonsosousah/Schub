@@ -37,21 +37,32 @@ class InfoFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        // Create empty session list
-        var sessionList = ArrayList<Session>()
 
-        // Get the sessions from API
+        // Get the updated information from API
         val queue = Volley.newRequestQueue(activity?.applicationContext)
         val url = getString(R.string.endpoint) + "/api";
-        val sessionsJsonRequest = JSONObject()
-        sessionsJsonRequest.put("action", "getEntries")
-        sessionsJsonRequest.put("table", "sessions")
-        val sessionsJsonObjectRequest = JsonObjectRequest(
+        val infoJsonRequest = JSONObject()
+        infoJsonRequest.put("action", "getEntries")
+      infoJsonRequest.put("table", "information")
+        val infoJsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url,
-            sessionsJsonRequest,
+            infoJsonRequest,
             { response ->
-                val sessionArrayJSON = response.getJSONArray("response")
-                Toast.makeText(activity?.applicationContext, sessionArrayJSON.toString(), Toast.LENGTH_LONG).show()
+                val infoArrayJSON = response.getJSONArray("response")
+                Toast.makeText(activity?.applicationContext, infoArrayJSON.toString(), Toast.LENGTH_LONG).show()
+
+                val infoObjectJSON = infoArrayJSON.getJSONObject(0)
+
+                // Populate values
+                view?.findViewById<TextView>(R.id.ConferenceNameTV)?.text = infoObjectJSON.getString("Conference Name")
+                view?.findViewById<TextView>(R.id.LocationTV)?.text = infoObjectJSON.getString("Location")
+                view?.findViewById<TextView>(R.id.MetroTransportTV)?.text = infoObjectJSON.getString("Metro Transport")
+                view?.findViewById<TextView>(R.id.BusTransportTV)?.text = infoObjectJSON.getString("Bus Transport")
+                view?.findViewById<TextView>(R.id.ContactsTV)?.text = infoObjectJSON.getString("Contacts")
+                view?.findViewById<TextView>(R.id.CodeConductTV)?.text = infoObjectJSON.getString("Code of Conduct")
+                view?.findViewById<TextView>(R.id.StartDateTV)?.text = infoObjectJSON.getString("Start Date")
+                view?.findViewById<TextView>(R.id.EndDateTV)?.text = infoObjectJSON.getString("End Date")
+
 
              /*   for (i in 0 until sessionArrayJSON.length()) {
                     val sessionJSON = sessionArrayJSON.getJSONObject(i)
@@ -87,7 +98,7 @@ class InfoFragment : Fragment() {
                 Toast.makeText(activity?.applicationContext, error.toString(), Toast.LENGTH_LONG).show()
             }
         )
-        queue.add(sessionsJsonObjectRequest)
+        queue.add(infoJsonObjectRequest)
     }
 
     override fun onCreateView(

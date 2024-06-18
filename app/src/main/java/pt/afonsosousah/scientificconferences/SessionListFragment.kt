@@ -47,7 +47,7 @@ class SessionListFragment : Fragment() {
 
         // Get the sessions from API
         val queue = Volley.newRequestQueue(activity?.applicationContext)
-        val url = getString(R.string.endpoint)
+        val url = getString(R.string.endpoint) + "/api"
         val sessionsJsonRequest = JSONObject()
         sessionsJsonRequest.put("action", "getEntries")
         sessionsJsonRequest.put("table", "sessions")

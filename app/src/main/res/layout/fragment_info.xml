@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".InfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,89 +12,93 @@
     <TextView
         android:id="@+id/ConferenceNameTV"
         android:layout_width="match_parent"
-        android:layout_height="44sp"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:layout_height="40sp"
+        android:text="Conference Name"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/LocationTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/StartDateTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Start date"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/EndDateTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="End date"
+        android:textSize="18sp" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="44sp" />
+        android:layout_height="35dp" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="44sp"
+        android:layout_height="35sp"
         android:text="Contacts"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/ContactsTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Contacts"
+        android:textSize="18sp" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="44sp" />
+        android:layout_height="35dp" />
 
     <TextView
         android:id="@+id/TitleTransport"
         android:layout_width="match_parent"
-        android:layout_height="44sp"
+        android:layout_height="35sp"
         android:text="Transports"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/MetroTransportTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Metro transport"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/BusTransportTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Bus transport"
+        android:textSize="18sp" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="44sp" />
+        android:layout_height="35dp" />
 
     <TextView
         android:id="@+id/TitleCodeConduct"
         android:layout_width="match_parent"
-        android:layout_height="44sp"
+        android:layout_height="35sp"
         android:text="Code of Conduct"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/CodeConductTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Code of conduct"
+        android:textSize="18sp" />
 
 </LinearLayout>

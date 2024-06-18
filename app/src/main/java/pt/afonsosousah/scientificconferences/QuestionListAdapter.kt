@@ -1,10 +1,14 @@
 package pt.afonsosousah.scientificconferences
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import java.time.Duration
+import java.time.LocalDateTime
 
 class QuestionListAdapter(private var questionList: List<Question>, private val
 listener: OnItemClickListener) :
@@ -19,6 +23,7 @@ listener: OnItemClickListener) :
             .inflate(R.layout.question_card, parent, false)
         return QuestionViewHolder(view)
     }
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         val question = questionList[position]
         holder.bind(question)
@@ -37,9 +42,16 @@ listener: OnItemClickListener) :
                 listener.onItemClick(questionList[position])
             }
         }
+        @RequiresApi(Build.VERSION_CODES.S)
         fun bind(question: Question) {
             contentTV.text = question.content
-            usernameTV.text = question.username
+            var timeString = "";
+            var durationSince = Duration.between(question.dateTime, LocalDateTime.now())
+            val days = durationSince.toDaysPart().toInt()
+            if (days == 0) timeString = "today"
+            else if (days == 1) timeString = " yesterday"
+            else if (days > 1) timeString = "${days} ago"
+            usernameTV.text = "by '${question.username}' ${timeString}"
         }
     }
 }

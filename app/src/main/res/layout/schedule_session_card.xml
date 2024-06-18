@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="75"
+            android:layout_weight="65"
             android:background="@drawable/dark_card"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -30,7 +30,12 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textColor="@color/textPrimary"
-                android:textSize="12sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
             <TextView
                 android:id="@+id/sessionHoursTV"
@@ -38,7 +43,11 @@
                 android:layout_height="wrap_content"
                 android:text="Hours"
                 android:textColor="@color/textPrimary"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
 
             <TextView
                 android:id="@+id/sessionRoomTV"
@@ -46,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="Room"
                 android:textColor="@color/textPrimary"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -58,7 +67,7 @@
             android:id="@+id/articlesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="25"
+            android:layout_weight="35"
             android:clipToPadding="true" />
 
     </LinearLayout>

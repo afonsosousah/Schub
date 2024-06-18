@@ -69,8 +69,6 @@ class ScheduleFragment : Fragment() {
 
         // Create empty article list
         var dayList = ArrayList<ScheduleDay>()
-        val sessionList = ArrayList<ScheduleSession>()
-        val articleList = ArrayList<ScheduleArticle>()
 
         // Get the articles from API
         val queue = Volley.newRequestQueue(activity?.applicationContext)
@@ -85,14 +83,20 @@ class ScheduleFragment : Fragment() {
                 val scheduleArrayJSON = response.getJSONArray("response")
 
                 for (i in 0 until scheduleArrayJSON.length()) {
-                    val scheduleJSON = scheduleArrayJSON.getJSONObject(i)
+                    val dayJSON = scheduleArrayJSON.getJSONObject(i)
 
-                    val day = scheduleJSON.getString("day")
+                    val dayString = dayJSON.getString("day")
+                    val sessionList = ArrayList<ScheduleSession>()
 
                     // Get all sessions to ArrayList<ScheduleSession>
-                    val sessionsArrayJSON = scheduleJSON.getJSONArray("sessions")
+                    val sessionsArrayJSON = dayJSON.optJSONArray("sessions")
+                    //showDialog(requireActivity(), sessionsArrayJSON.toString())
+
                     for (i in 0 until sessionsArrayJSON.length()) {
                         val sessionJSON = sessionsArrayJSON.getJSONObject(i)
+                        //showDialog(requireActivity(), sessionJSON.toString())
+
+                        val articleList = ArrayList<ScheduleArticle>()
 
                         val title = sessionJSON.getString("title")
                         val datetimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -117,7 +121,7 @@ class ScheduleFragment : Fragment() {
                         sessionList.add(ScheduleSession(title, hours, room, articleList))
                     }
 
-                    dayList.add(ScheduleDay(day, sessionList))
+                    dayList.add(ScheduleDay(dayString, sessionList))
                 }
 
                 // Get recycler view, create adapter and populate it

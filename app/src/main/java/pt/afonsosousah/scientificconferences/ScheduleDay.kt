@@ -1,6 +1,6 @@
 package pt.afonsosousah.scientificconferences
 
 data class ScheduleDay(
-    var day: String,
+    var dayString: String,
     var sessions: ArrayList<ScheduleSession>
 )
