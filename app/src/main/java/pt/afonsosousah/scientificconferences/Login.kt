@@ -38,7 +38,7 @@ class Login : AppCompatActivity() {
         }
 
         // Login button click listener
-        val loginClick = findViewById<Button>(R.id.buttonLogin)
+        val loginClick = findViewById<Button>(R.id.submitButton)
         loginClick.setOnClickListener {
 
             // Get the components

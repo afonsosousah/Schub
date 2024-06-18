@@ -4,5 +4,5 @@ data class ScheduleSession(
     var title: String,
     var hours: String,
     var room: String,
-    var articles: ArrayList<ScheduleArticle>
+    var articles: ArrayList<Article>
 )

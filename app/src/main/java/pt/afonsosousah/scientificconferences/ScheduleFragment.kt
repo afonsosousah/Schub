@@ -8,20 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,7 +81,7 @@ class ScheduleFragment : Fragment() {
                 for (i in 0 until scheduleArrayJSON.length()) {
                     val dayJSON = scheduleArrayJSON.getJSONObject(i)
 
-                    val dayString = dayJSON.getString("day")
+                    val date = LocalDate.parse(dayJSON.getString("day"))
                     val sessionList = ArrayList<ScheduleSession>()
 
                     // Get all sessions to ArrayList<ScheduleSession>
@@ -96,7 +92,7 @@ class ScheduleFragment : Fragment() {
                         val sessionJSON = sessionsArrayJSON.getJSONObject(i)
                         //showDialog(requireActivity(), sessionJSON.toString())
 
-                        val articleList = ArrayList<ScheduleArticle>()
+                        val articleList = ArrayList<Article>()
 
                         val title = sessionJSON.getString("title")
                         val datetimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -111,28 +107,29 @@ class ScheduleFragment : Fragment() {
                         val articleArrayJSON = sessionJSON.getJSONArray("articles")
                         for(i in 0 until articleArrayJSON.length()) {
                             val articleJSON = articleArrayJSON.getJSONObject(i)
+                            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-                            val title = articleJSON.getString("title")
-                            val authors = articleJSON.getString("authors")
-
-                            articleList.add(ScheduleArticle(title, authors))
+                            articleList.add(Article(
+                                articleJSON.getInt("id"),
+                                articleJSON.getString("title"),
+                                LocalDate.parse(articleJSON.getString("date_published"), dateFormatter),
+                                articleJSON.getInt("session_id"),
+                                articleJSON.getString("abstract"),
+                                articleJSON.getString("pdf"),
+                                articleJSON.getString("authors")
+                            ))
                         }
 
                         sessionList.add(ScheduleSession(title, hours, room, articleList))
                     }
 
-                    dayList.add(ScheduleDay(dayString, sessionList))
+                    dayList.add(ScheduleDay(date, sessionList))
                 }
 
                 // Get recycler view, create adapter and populate it
                 val daysRecyclerView = rootView.findViewById<RecyclerView>(R.id.daysRecyclerView)
                 daysRecyclerView?.layoutManager = LinearLayoutManager(activity?.applicationContext)
-                val daysAdapter = ScheduleDayListAdapter(dayList, object :
-                    ScheduleDayListAdapter.OnItemClickListener {
-                    override fun onItemClick(day: ScheduleDay) {
-                        Toast.makeText(activity?.applicationContext, day.sessions[0].title, Toast.LENGTH_SHORT).show()
-                    }
-                })
+                val daysAdapter = ScheduleDayListAdapter(dayList, null)
                 daysRecyclerView?.adapter = daysAdapter
             },
             { error ->

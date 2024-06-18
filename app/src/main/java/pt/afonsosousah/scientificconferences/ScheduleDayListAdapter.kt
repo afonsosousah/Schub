@@ -1,17 +1,19 @@
 package pt.afonsosousah.scientificconferences
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.time.format.DateTimeFormatter
 
 
 class ScheduleDayListAdapter(private var dayList: List<ScheduleDay>, private val
-listener: OnItemClickListener) :
+listener: OnItemClickListener?
+) :
     RecyclerView.Adapter<ScheduleDayListAdapter.DayViewHolder>() {
 
     interface OnItemClickListener {
@@ -23,6 +25,7 @@ listener: OnItemClickListener) :
             .inflate(R.layout.schedule_day_card, parent, false)
         return DayViewHolder(view)
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: DayViewHolder, position: Int) {
         val day = dayList[position]
         holder.bind(day)
@@ -37,20 +40,17 @@ listener: OnItemClickListener) :
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(dayList[position])
+                listener?.onItemClick(dayList[position])
             }
         }
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(day: ScheduleDay) {
-            dayTV.text = day.dayString
+            val dateFormatter = DateTimeFormatter.ofPattern("dd LLL")
+            dayTV.text = day.date.format(dateFormatter)
 
             val sessionsRecyclerView = itemView.findViewById<RecyclerView>(R.id.sessionsRecyclerView)
             sessionsRecyclerView?.layoutManager = LinearLayoutManager(itemView.context)
-            val sessionsAdapter = ScheduleSessionListAdapter(day.sessions, object :
-                ScheduleSessionListAdapter.OnItemClickListener {
-                override fun onItemClick(session: ScheduleSession) {
-                    Toast.makeText(itemView.context, session.title.toString(), Toast.LENGTH_SHORT).show()
-                }
-            })
+            val sessionsAdapter = ScheduleSessionListAdapter(day.sessions, null)
             sessionsRecyclerView?.adapter = sessionsAdapter
         }
     }

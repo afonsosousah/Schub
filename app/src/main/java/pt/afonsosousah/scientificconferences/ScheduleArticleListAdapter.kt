@@ -7,12 +7,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ScheduleArticleListAdapter(private var articleList: List<ScheduleArticle>, private val
+class ScheduleArticleListAdapter(private var articleList: List<Article>, private val
 listener: OnItemClickListener) :
     RecyclerView.Adapter<ScheduleArticleListAdapter.ArticleViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(article: ScheduleArticle)
+        fun onItemClick(article: Article)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             ArticleViewHolder {
@@ -38,7 +38,7 @@ listener: OnItemClickListener) :
                 listener.onItemClick(articleList[position])
             }
         }
-        fun bind(article: ScheduleArticle) {
+        fun bind(article: Article) {
             titleTV.text = article.title
             authorsTV.text = article.authors
         }

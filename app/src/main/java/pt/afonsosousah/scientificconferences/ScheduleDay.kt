@@ -1,6 +1,8 @@
 package pt.afonsosousah.scientificconferences
 
+import java.time.LocalDate
+
 data class ScheduleDay(
-    var dayString: String,
+    var date: LocalDate,
     var sessions: ArrayList<ScheduleSession>
 )

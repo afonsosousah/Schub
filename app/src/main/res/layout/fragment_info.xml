@@ -20,23 +20,16 @@
     <TextView
         android:id="@+id/LocationTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="wrap_content"
         android:text="Location"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/StartDateTV"
+        android:id="@+id/DatesTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="Start date"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/EndDateTV"
-        android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="End date"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Dates"
+        android:textSize="16sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -52,9 +45,9 @@
     <TextView
         android:id="@+id/ContactsTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="wrap_content"
         android:text="Contacts"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -69,18 +62,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/MetroTransportTV"
+        android:id="@+id/TransportTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="Metro transport"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/BusTransportTV"
-        android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:text="Bus transport"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:text="Transports"
+        android:textSize="16sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -97,8 +83,8 @@
     <TextView
         android:id="@+id/CodeConductTV"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="wrap_content"
         android:text="Code of conduct"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

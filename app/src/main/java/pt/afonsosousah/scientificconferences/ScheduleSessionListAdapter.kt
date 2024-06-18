@@ -1,19 +1,21 @@
 package pt.afonsosousah.scientificconferences
 
 import android.os.Build
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.time.format.DateTimeFormatter
 
 class ScheduleSessionListAdapter(private var sessionList: List<ScheduleSession>, private val
-listener: OnItemClickListener) :
+listener: OnItemClickListener?
+) :
     RecyclerView.Adapter<ScheduleSessionListAdapter.ScheduleSessionViewHolder>() {
 
     interface OnItemClickListener {
@@ -42,7 +44,7 @@ listener: OnItemClickListener) :
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(sessionList[position])
+                listener?.onItemClick(sessionList[position])
             }
         }
         @RequiresApi(Build.VERSION_CODES.O)
@@ -55,11 +57,26 @@ listener: OnItemClickListener) :
             articlesRecyclerView?.layoutManager = LinearLayoutManager(itemView.context)
             val articlesAdapter = ScheduleArticleListAdapter(session.articles, object :
                 ScheduleArticleListAdapter.OnItemClickListener {
-                override fun onItemClick(article: ScheduleArticle) {
-                    Toast.makeText(itemView.context, article.title.toString(), Toast.LENGTH_SHORT).show()
+                override fun onItemClick(article: Article) {
+                    //Toast.makeText(itemView.context, article.title.toString(), Toast.LENGTH_SHORT).show()
+                    val detailFragment = ArticleDetailFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("id", article.id)
+                    bundle.putString("title", article.title)
+                    bundle.putSerializable("date_published", article.date_published)
+                    bundle.putInt("session_id", article.session_id)
+                    bundle.putString("abstract", article.abstract)
+                    bundle.putString("pdf", article.pdf)
+                    bundle.putString("authors", article.authors)
+                    detailFragment.arguments = bundle
+                    replaceFragment(detailFragment, itemView.findFragment<ScheduleFragment>())
                 }
             })
             articlesRecyclerView?.adapter = articlesAdapter
+        }
+
+        private fun replaceFragment(fragment: Fragment, hostFragment: Fragment) {
+            hostFragment.parentFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
         }
     }
 }

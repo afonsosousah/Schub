@@ -7,14 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
-import java.time.Duration
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,50 +45,19 @@ class InfoFragment : Fragment() {
             infoJsonRequest,
             { response ->
                 val infoArrayJSON = response.getJSONArray("response")
-                Toast.makeText(activity?.applicationContext, infoArrayJSON.toString(), Toast.LENGTH_LONG).show()
-
                 val infoObjectJSON = infoArrayJSON.getJSONObject(0)
 
+                val startDate = infoObjectJSON.getString("start_date")
+                val endDate = infoObjectJSON.getString("end_date")
+                val datesString = "from ${startDate} until ${endDate}"
+
                 // Populate values
-                view?.findViewById<TextView>(R.id.ConferenceNameTV)?.text = infoObjectJSON.getString("Conference Name")
-                view?.findViewById<TextView>(R.id.LocationTV)?.text = infoObjectJSON.getString("Location")
-                view?.findViewById<TextView>(R.id.MetroTransportTV)?.text = infoObjectJSON.getString("Metro Transport")
-                view?.findViewById<TextView>(R.id.BusTransportTV)?.text = infoObjectJSON.getString("Bus Transport")
-                view?.findViewById<TextView>(R.id.ContactsTV)?.text = infoObjectJSON.getString("Contacts")
-                view?.findViewById<TextView>(R.id.CodeConductTV)?.text = infoObjectJSON.getString("Code of Conduct")
-                view?.findViewById<TextView>(R.id.StartDateTV)?.text = infoObjectJSON.getString("Start Date")
-                view?.findViewById<TextView>(R.id.EndDateTV)?.text = infoObjectJSON.getString("End Date")
-
-
-             /*   for (i in 0 until sessionArrayJSON.length()) {
-                    val sessionJSON = sessionArrayJSON.getJSONObject(i)
-                    val datetimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-
-                    val id = sessionJSON.getInt("id")
-                    val title = sessionJSON.getString("title")
-                    val datetime_start = LocalDateTime.parse(sessionJSON.getString("datetime_start"), datetimeFormatter)
-                    val datetime_end = LocalDateTime.parse(sessionJSON.getString("datetime_end"), datetimeFormatter)
-                    val room_name = sessionJSON.getString("room_name")
-                    sessionList.add(Session(id, title, datetime_start, datetime_end, room_name))
-                }
-
-                sessionList = ArrayList(sessionList.sortedBy { it.datetime_start })
-
-                val nextSessionCardView = view?.findViewById<CardView>(R.id.nextSessionCardView)
-                val nextSessionTitleTV = view?.findViewById<TextView>(R.id.nextSessionTitleTV)
-                val nextSessionRoomTV = view?.findViewById<TextView>(R.id.nextSessionRoomTV)
-                val nextSessionInTV = view?.findViewById<TextView>(R.id.nextSessionInTV)
-
-                val nextSession = sessionList.find { Duration.between(LocalDateTime.now(), it.datetime_start) > Duration.ZERO }
-                if (nextSession !== null) {
-                    nextSessionTitleTV?.text = nextSession?.title
-                    nextSessionRoomTV?.text = nextSession?.room_name
-                    val duration = Duration.between(LocalDateTime.now(), nextSession?.datetime_start)
-                    nextSessionInTV?.text = "Next session in ${duration.toDaysPart().toString()}d${duration.toHoursPart().toString()}h${duration.toMinutesPart()}m"
-                } else {
-                    nextSessionCardView?.visibility = View.GONE
-                    nextSessionInTV?.text = "There are no sessions in the near future"
-               } */
+                view?.findViewById<TextView>(R.id.ConferenceNameTV)?.text = infoObjectJSON.getString("conference_name")
+                view?.findViewById<TextView>(R.id.LocationTV)?.text = infoObjectJSON.getString("location")
+                view?.findViewById<TextView>(R.id.TransportTV)?.text = infoObjectJSON.getString("transport")
+                view?.findViewById<TextView>(R.id.ContactsTV)?.text = infoObjectJSON.getString("contacts")
+                view?.findViewById<TextView>(R.id.CodeConductTV)?.text = infoObjectJSON.getString("code_of_conduct")
+                view?.findViewById<TextView>(R.id.DatesTV)?.text = datesString
             },
             { error ->
                 Toast.makeText(activity?.applicationContext, error.toString(), Toast.LENGTH_LONG).show()
