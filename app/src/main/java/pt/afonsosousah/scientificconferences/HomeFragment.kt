@@ -151,7 +151,10 @@ class HomeFragment : Fragment() {
         infoButton.setOnClickListener {
             replaceFragment(InfoFragment())
         }
-
+        val requestInfoButton = rootView.findViewById<AppCompatButton>(R.id.requestInfoButton)
+        requestInfoButton.setOnClickListener {
+            replaceFragment(fragment_contactForm())
+        }
         return rootView
     }
     private fun replaceFragment(fragment: Fragment) {

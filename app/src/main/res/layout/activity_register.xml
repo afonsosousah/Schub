@@ -67,8 +67,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRegister"
-        android:layout_width="170dp"
-        android:layout_height="60dp"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/gradient"
         android:paddingLeft="32dp"
@@ -78,8 +78,8 @@
         android:text="Register"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
