@@ -1,7 +1,9 @@
 package pt.afonsosousah.scientificconferences
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationBarView
@@ -43,11 +45,26 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(HomeFragment())
 
         // Get user info
-        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("User", MODE_PRIVATE)
         val username = sharedPref.getString("username", null)
         //val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
         val usernameTextView = findViewById<TextView>(R.id.usernameTextView)
         usernameTextView.text = "Welcome, " + username
+
+        // Set logout click listener
+        val logoutImageView = findViewById<ImageView>(R.id.logoutImageView)
+        logoutImageView.setOnClickListener {
+            // clear shared prefs
+            with(sharedPref.edit()) {
+                clear()
+                apply()
+            }
+
+            // go to login screen
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -43,9 +44,7 @@ class Register : AppCompatActivity() {
             val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url,
                 jsonRequest,
                 { response ->
-                    if (!response.getBoolean("success")) responseTextView.setTextColor(Color.RED)
-                    else responseTextView.setTextColor(resources.getColor(R.color.light_gray))
-                    responseTextView.text = response.getString("message")
+                    Toast.makeText(this, response.getString("message"), Toast.LENGTH_SHORT).show()
 
                     if (response.getBoolean("success")) {
                         val intent = Intent(this, Login::class.java)

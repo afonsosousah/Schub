@@ -25,9 +25,9 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
-        android:text="Test"
         android:textColor="@color/white"
-        android:textColorHint="@color/light_gray" />
+        android:textColorHint="@color/light_gray"
+        android:background="@drawable/login_edit_text"/>
 
     <EditText
         android:id="@+id/emailEditText"
@@ -37,9 +37,9 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="text"
-        android:text="test@example.com"
         android:textColor="@color/white"
-        android:textColorHint="@color/light_gray" />
+        android:textColorHint="@color/light_gray"
+        android:background="@drawable/login_edit_text"/>
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -49,9 +49,9 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:text="test"
         android:textColor="@color/white"
-        android:textColorHint="@color/light_gray" />
+        android:textColorHint="@color/light_gray"
+        android:background="@drawable/login_edit_text"/>
 
     <EditText
         android:id="@+id/confirmPasswordEditText"
@@ -61,9 +61,9 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:text="test"
         android:textColor="@color/white"
-        android:textColorHint="@color/light_gray" />
+        android:textColorHint="@color/light_gray"
+        android:background="@drawable/login_edit_text"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRegister"
@@ -79,8 +79,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/responseTextView"

@@ -21,7 +21,15 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Check the shared preferences to check if user has previously logged in
+        val sharedPref = getSharedPreferences("User", Context.MODE_PRIVATE)
+        if (sharedPref.getBoolean("isLoggedIn", false)) {
+            // Go to home screen
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
+        // Add gradient to "Register" text
         val openRegisterTextView = findViewById<TextView>(R.id.buttonOpenRegister)
         val paint = openRegisterTextView.paint
         val width = paint.measureText(openRegisterTextView.text.toString())
@@ -60,10 +68,11 @@ class Login : AppCompatActivity() {
                 jsonRequest,
                 { response ->
                     if (response.getBoolean("success")) {
+                        // Go to home screen
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
 
-                        val sharedPref = getSharedPreferences("User", Context.MODE_PRIVATE)
+                        // save to shared preferences
                         with(sharedPref.edit()) {
                             putString("username", response.getString("username"))
                             putInt("user_id", response.getInt("id"))
